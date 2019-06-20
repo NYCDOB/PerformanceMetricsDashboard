@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="../build/nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <script src="../build/nv.d3.js"></script>
+
+    <style>
+        text {
+            font: 14px sans-serif;
+        }
+        svg {
+            display: block;
+        }
+        html, body, #chart1, svg {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chart1">
+    <svg></svg>
+</div>
+
+<script>
+
+    historicalBarChart = [
+     {
+    key: "BX",
+    color: "#5092C0",
+    values:
+    [ 
+      { x : "2012", y : 479 },
+      { x : "2013", y : 698 },
+      { x : "2014", y : 624 },
+      { x : "2015", y : 717 },
+	  { x : "2016", y : 1058 }
+    ]
+  },
+
+ {
+    key: "BK",
+    color: "#FD9D48",
+    values:
+    [      
+	 { x : "2012", y : 1247},
+	 { x : "2013", y : 1156},
+	 { x : "2014", y : 1871},
+	 { x : "2015", y : 2131},
+	 { x : "2016", y : 2666}
+    ]
+  },
+
+
+ {
+    key: "MN",
+    color: "#B22222",
+    values:
+    [      
+	 { x : "2012", y : 2851},
+	 { x : "2013", y : 2973},
+	 { x : "2014", y : 3564},
+	 { x : "2015", y : 4223},
+	 { x : "2016", y : 4902}
+    ]
+  },
+ 
+  {
+    key: "QN",
+    color: "#C0D3EC",
+    values:
+    [      
+	 { x : "2012", y : 924},
+	 { x : "2013", y : 1085},
+	 { x : "2014", y : 1260},
+	 { x : "2015", y : 1093},
+	 { x : "2016", y : 1471}
+    ]
+  },
+   {
+    key: "SI",
+    color: "#BDB76B",
+    values:
+    [      
+	 { x : "2012", y : 145},
+	 { x : "2013", y : 94},
+	 { x : "2014", y : 113},
+	 { x : "2015", y : 176},
+	 { x : "2016", y : 201}
+    ]
+  }
+  
+
+
+
+
+    ];
+
+    nv.addGraph(function() {
+        var chart = nv.models.multiBarChart()
+		
+        .showControls(true)
+        .stacked(true);
+		
+        chart.yAxis
+            .tickFormat(d3.format(',.0f'))
+            .axisLabelDistance(0);
+
+        chart.xAxis
+            .staggerLabels(true)
+            .axisLabel('');
+
+        chart
+            .reduceXTicks(true)
+
+          
+
+        d3.select('#chart1 svg')
+            .datum(historicalBarChart)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+        return chart;
+    });
+
+
+</script>
+</body>
+</html>
